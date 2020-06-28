@@ -1,0 +1,108 @@
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<script>
+    $(function () {
+        $("#btncheck").click(function () {
+			var op_dic = {};
+            $("table tbody tr").each(function(index, tr) {
+                //var textval = $(this).find("td").eq(1).find(":text").val();
+                //var ddlval = $(this).find("td").eq(2).find("select option:selected").text();
+                //alert("TextBox text is " + textval + "; DropDown selected value is " + ddlval);
+				//$(this).find("td").eq(1).('input[type="text"]').each(function(){
+				
+				
+				
+				/*$(this).find("td").each(function(t_in,td){
+					//alert(index+"  => "+t_in)
+					if(t_in>0 && !$(this).is(':empty')){
+					//alert(index+"  => "+t_in)
+					$(this).find(":text").each(function(){
+					alert(this.id)
+					alert(this.value)
+					});
+				}
+				});*/
+				
+				
+				var prop_dic = {}
+				
+				var op_name = "";
+				var out_id= "";
+				$(this).find("td").each(function(t_in,td){
+					alert(index+"  => "+t_in)
+					if(t_in>0 && !$(this).is(':empty')){
+					op_name = "op"+index+"_"+t_in;
+					out_id= "out"+index+"_"+t_in;
+					//alert(index+"  => "+t_in)
+					$(this).find(":text").each(function(){
+					prop_dic[this.id]=this.value
+					});
+				}
+				});
+				
+				prop_dic['out_id'] = out_id
+				
+				op_dic[op_name] = prop_dic
+				
+				/*var prop_dic = {}
+				const out_id= "out"+index+"_"+1;
+				const op_name = "op"+index+"_"+1;
+				alert(out_id)		
+				alert(op_name)
+				$(this).find("td").eq(1).find(":text").each(function(){
+				alert(this.id)
+				alert(this.value)
+				prop_dic[this.id]=this.value
+				});
+				prop_dic['out_id'] = out_id
+				
+				op_dic[op_name] = prop_dic*/
+				alert(JSON.stringify(op_dic))
+            })
+			
+			alert(JSON.stringify(op_dic))
+        })
+    })
+</script>
+
+
+	<div>
+    <input id="btncheck" type="button" value="CheckValue">
+    <table class="webgrid-table">
+        <thead>
+            <tr>
+                <th>Column1</th>
+                <th>Column2</th>
+                <th>Column3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Row1</td>
+                <td>
+				<input type="text" id="operation_type" value="source" readonly=""><br>
+				<input type="text" id="local_storage" value="dfdfv">
+					</td>
+                <td>
+                <input type="text" id="operation_type" value="source" readonly=""><br>
+				<input type="text" id="local_storage" value="new_c\\scc">
+            </td></tr>
+            <tr>
+                <td>Row2</td>
+                <td>
+                    				<input type="text" id="operation_type" value="filter" readonly=""><br>
+				<input type="text" id="filter_condition" value="age>10">
+					</td>
+                <td></td>
+			</tr>
+            <tr>
+                <td>Row3</td>
+                <td>
+                <input type="text" id="operation_type" value="sink" readonly=""><br>
+				<input type="text" id="fields" value="*"><br>
+				<input type="text" id="path" value="dgfdfv">
+					</td>
+                <td></td></tr>
+        </tbody>
+    </table>
+</div>
